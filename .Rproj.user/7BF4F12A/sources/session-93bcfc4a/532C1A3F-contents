@@ -207,7 +207,7 @@ deploy_MAST21V2_2024 <- function(
 
 
 
-          musicassessr::musicassessr_init(),
+          musicassessr::musicassessr_init(app_name = app_name),
 
           upei_intro(musicassessr_state),
 

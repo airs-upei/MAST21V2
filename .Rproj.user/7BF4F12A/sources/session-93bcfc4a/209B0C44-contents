@@ -73,7 +73,7 @@ get_upei_id <- function() {
 upei_intro <- function(state, append = NULL) {
 
 
-  function() {
+
     t <-
       psychTestR::new_timeline(
         psychTestR::join(
@@ -121,12 +121,11 @@ upei_intro <- function(state, append = NULL) {
           psychTestR::final_page("You have finished this section.")
         ), opt = upei_test_options(state))
     }
-  }
+
 }
 upei_intro_part2 <- function(state, append = NULL) {
 
 
-  function() {
     t <-
       psychTestR::new_timeline(
         psychTestR::join(
@@ -173,7 +172,7 @@ upei_intro_part2 <- function(state, append = NULL) {
           psychTestR::final_page("You have finished this section.")
         ), opt = upei_test_options(state))
     }
-  }
+
 }
 say_pd <-  function(dinosaur_instructions, body_instructions) {
   psychTestR::module('say_pd',
