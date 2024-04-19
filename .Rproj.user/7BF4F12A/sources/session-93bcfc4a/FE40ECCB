@@ -1,14 +1,14 @@
 {
-    "id": "AB53CB72",
-    "path": "~/RProjects/MAST21V2/R/hello.R",
-    "project_path": "R/hello.R",
-    "type": "r_source",
+    "id": "FE40ECCB",
+    "path": "~/RProjects/MAST21V2/NAMESPACE",
+    "project_path": "NAMESPACE",
+    "type": "r_namespace",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1713564900476.0,
+    "created": 1713565608908.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 6,
     "properties": {
         "source_window_id": "",
         "Source": "Source"
