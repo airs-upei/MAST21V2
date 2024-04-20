@@ -227,9 +227,9 @@ mast_21 <-  function(mast_inst) {
                        psychTestR::set_global("snap", snap, state)
                      }),
 
-                     musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd1", text = "Please sing Happy Birthday."),
-
-                     psychTestR::elt_save_results_to_disk(complete = FALSE),
+                     # musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd1", text = "Please sing Happy Birthday."),
+                     #
+                     # psychTestR::elt_save_results_to_disk(complete = FALSE),
 
                      condition_one(),
                      # OR
@@ -307,7 +307,7 @@ phonation_duration <- function() {
 
 make_up_an_ending <- function (page_title, page_text, sub_text) {
 
-  make_ending_file <- "make_up_ending/end_melody_low.wav"
+  make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
 
 
   psychTestR::module("make_up_ending_1",
@@ -530,11 +530,11 @@ choose_MAST21_text <- function(file, trial_type) {
 
 get_MAST_files <- function(high_or_low) {
   if(high_or_low == "high") {
-    file_dir <- 'MAST21_high/'
+    file_dir <- 'MAST21-assets/MAST21_high/'
     files_list <- MAST_high_wavs_ordered
 
   } else {
-    file_dir <- 'MAST21_low/'
+    file_dir <- 'MAST21-assets/MAST21_low/'
     files_list <- MAST_low_wavs_ordered
   }
   list(file_dir, files_list)
@@ -606,7 +606,7 @@ deploy_MAST21_wav <- function(musicassessr_state = 'production') {
 .onLoad <- function(...) {
   shiny::addResourcePath(
     prefix = "MAST21-assets", # custom prefix that will be used to reference your directory
-    directoryPath = system.file("www", package = "MAST21") # path to resource in your package
+    directoryPath = system.file("www", package = "MAST21V2") # path to resource in your package
   )
 }
 
