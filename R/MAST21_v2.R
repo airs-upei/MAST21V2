@@ -606,7 +606,7 @@ deploy_MAST21_wav <- function(musicassessr_state = 'production') {
 .onLoad <- function(...) {
   shiny::addResourcePath(
     prefix = "MAST21-assets", # custom prefix that will be used to reference your directory
-    directoryPath = system.file("www", package = "MAST21V2") # path to resource in your package
+    directoryPath = system.file("www", package = "MAST21") # path to resource in your package
   )
 }
 
