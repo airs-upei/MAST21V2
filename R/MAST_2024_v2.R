@@ -120,7 +120,7 @@ after_setup <- function(page_type = "record_midi_page",
 
 
 
-            musicassessr::musicassessr_init(app_name = app_name),
+            musicassessr::musicassessr_init(),
 
             welcome_pg <- psychTestR::one_button_page(shiny::tags$div(shiny::tags$h2(paste("Welcome to the UPEI ", 	format(Sys.Date(), "%Y"), " Singing Test")),
                                                                       shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
