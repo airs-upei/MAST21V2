@@ -236,7 +236,7 @@ deploy_MAST21V2_2024 <- function(
     setup_pages = setup_pages,
     app_name = app_name,
     musicassessr_state = musicassessr_state,
-    final_qualtrics_url = final_qualtrics_url,
+    final_qualtrics_url = "https",
     opening_and_final_image = opening_and_final_image,
     language = language
   )
