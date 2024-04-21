@@ -170,8 +170,15 @@ after_setup <- function(page_type = "record_midi_page",
         psychTestR::reactive_page(function(state, ... ) {
           p_id <- psychTestR::get_global('p_id', state)
           url <- paste0(final_qualtrics_url, p_id)
-          psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
-                                                               shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
+          if(length(final_qualtrics_url) > 0) {
+            psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
+                                                                 shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
+          }
+
+          else {
+            psychTestR::final_page(shiny::tags$div(shiny::tags$p("You have completed the test.")))
+          }
+
         })
 
       )
@@ -203,7 +210,7 @@ deploy_MAST21V2_2024 <- function(
     data_collection_method = c("midi", "audio", "key_presses"),
     get_p_id = TRUE,
     absolute_url = "https://musicog.ca/",
-    final_qualtrics_url = 'https://upeiairs.qualtrics.com/jfe/form/SV_5vDAjJhxLqZw7Km?participant=',
+    final_qualtrics_url = '',
     opening_and_final_image = "https://img.freepik.com/free-vector/headphone-concept-illustration_114360-2132.jpg?w=826&t=st=1708543460~exp=1708544060~hmac=7a9cba8f7104f82422a55f30f5120598e4ce64dd222a1247c8da79825dddacb6"
 ) {
 
