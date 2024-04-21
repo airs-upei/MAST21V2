@@ -412,7 +412,7 @@ make_up_an_ending_helper <- function(page_title, page_text, sub_text, high_or_lo
       hideOnPlay = TRUE,
       auto_next_page = TRUE,
       page_label = 'make_up_ending_1',
-      volume = 2),
+      volume = 1),
     # musicassessr::present_stimuli(
     #   stimuli = make_ending_file,
     #   stimuli_type = "audio",
@@ -465,7 +465,7 @@ make_up_an_ending_helper <- function(page_title, page_text, sub_text, high_or_lo
                                       auto_next_page = TRUE,
                                       page_label = "make_up_ending_2",
 
-                                      volume = 2),
+                                      volume = 1),
 
                                     psychTestR::elt_save_results_to_disk(complete = FALSE))
 
