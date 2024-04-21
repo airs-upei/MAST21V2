@@ -165,7 +165,13 @@ after_setup_v2 <- function(page_type = "record_midi_page",
 
       sing_favourite_song("Please sing your favourite song."),
 
-      psychTestR::elt_save_results_to_disk(complete = TRUE)
+      psychTestR::elt_save_results_to_disk(complete = TRUE),
+
+      psychTestR::reactive_page(function(state, ... ) {
+        p_id <- psychTestR::get_global('p_id', state)
+        psychTestR::final_page(shiny::tags$div(shiny::tags$p("You have completed the test.")))
+
+      })
 
     ),
     opt = upei_test_options(musicassessr_state)
