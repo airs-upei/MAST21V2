@@ -7,7 +7,7 @@ after_setup <- function(page_type = "record_midi_page",
                         opening_and_final_image,
                         musicassessr_state,
                         absolute_url = "https://musicog.ca/",
-                        final_qualtrics_url) {
+                        final_qualtrics_url = "") {
 
   data_collection_method <- match.arg(data_collection_method)
 
@@ -79,7 +79,7 @@ after_setup <- function(page_type = "record_midi_page",
       psychTestR::reactive_page(function(state, ... ) {
         p_id <- psychTestR::get_global('p_id', state)
         url <- paste0(final_qualtrics_url, p_id)
-        if(!grepl("http", final_qualtrics_url)) {
+        if(grepl("http", final_qualtrics_url)) {
           psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
                                                                shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
         }
