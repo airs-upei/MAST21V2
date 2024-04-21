@@ -396,7 +396,7 @@ phonation_duration <- function() {
   )
 }
 
-make_up_an_ending_helper <- function(high_or_low = c("high", "low")) {
+make_up_an_ending_helper <- function(page_title, page_text, sub_text, high_or_low = c("high", "low")) {
   make_ending_file <- paste0("MAST21-assets/make_up_ending/end_melody_", high_or_low, ".wav")
 
 
@@ -475,7 +475,7 @@ make_up_an_ending_helper <- function(high_or_low = c("high", "low")) {
   )
 }
 
-make_up_an_ending_low <- function() {
+make_up_an_ending_low <- function(page_title, page_text, sub_text) {
 
   psychTestR::conditional(
     test = function(state, ...) {
@@ -483,21 +483,21 @@ make_up_an_ending_low <- function() {
       range <- psychTestR::get_global("range", state)
       range %in% c("Baritone", "Bass", "Tenor")
     },
-    logic = make_up_an_ending_helper(high_or_low = "low")
+    logic = make_up_an_ending_helper(page_title, page_text, sub_text, high_or_low = "low")
   )
 
 
 
 }
 
-make_up_an_ending_high <- function() {
+make_up_an_ending_high <- function(page_title, page_text, sub_text) {
   psychTestR::conditional(
     test = function(state, ...) {
       print('ending...high')
       range <- psychTestR::get_global("range", state)
       range %in% c("Soprano", "Alto")
     },
-    logic = make_up_an_ending_helper(high_or_low = "high")
+    logic = make_up_an_ending_helper(page_title, page_text, sub_text, high_or_low = "high")
   )
 
 }
@@ -516,8 +516,8 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                        shiny::tags$p(page_text))
                    ),
 
-                   make_up_an_ending_low(),
-                   make_up_an_ending_high()
+                   make_up_an_ending_low(page_title, page_text, sub_text),
+                   make_up_an_ending_high(page_title, page_text, sub_text)
 
 
   )
