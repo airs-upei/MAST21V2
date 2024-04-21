@@ -307,7 +307,7 @@ phonation_duration <- function() {
 
 make_up_an_ending <- function (page_title, page_text, sub_text) {
 
-  make_ending_file <- "make_up_ending/end_melody_low.wav"
+  make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
 
 
   psychTestR::module("make_up_ending_1",
@@ -530,11 +530,11 @@ choose_MAST21_text <- function(file, trial_type) {
 
 get_MAST_files <- function(high_or_low) {
   if(high_or_low == "high") {
-    file_dir <- 'MAST21_high/'
+    file_dir <- 'MAST21-assets/MAST21_high/'
     files_list <- MAST_high_wavs_ordered
 
   } else {
-    file_dir <- 'MAST21_low/'
+    file_dir <- 'MAST21-assets/MAST21_low/'
     files_list <- MAST_low_wavs_ordered
   }
   list(file_dir, files_list)
