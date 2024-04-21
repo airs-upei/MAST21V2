@@ -141,8 +141,6 @@ after_setup_v2 <- function(page_type = "record_midi_page",
           musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
 
 
-
-
           grandfather_passage(),
 
           voice_range_test(),
