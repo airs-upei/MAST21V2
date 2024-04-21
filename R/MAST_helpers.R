@@ -400,6 +400,17 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
 
   make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
 
+  range <- psychTestR::get_global("range", state)
+
+  if(range %in% c("Baritone", "Bass", "Tenor", "Not Sure")) {
+    make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
+
+  }
+
+  else {
+    make_ending_file <- "MAST21-assets/make_up_ending/end_melody_high.wav"
+
+  }
 
   psychTestR::module("make_up_ending_1",
 
@@ -473,6 +484,7 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                                                        hideOnPlay = TRUE,
                                                        auto_next_page = TRUE,
                                                        page_label = "make_up_ending_1",
+
                                                        volume = 2),
 
                                                      psychTestR::elt_save_results_to_disk(complete = FALSE))
