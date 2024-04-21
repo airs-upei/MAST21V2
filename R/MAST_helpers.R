@@ -1,11 +1,95 @@
 
-.onLoad <- function(...) {
-  shiny::addResourcePath(
-    prefix = "MAST21-assets", # custom prefix that will be used to reference your directory
-    directoryPath = system.file("www", package = "MAST21V2") # path to resource in your package
+daa_low <- function() {
+  psychTestR::conditional(
+    test = function(state, ...) {
+      range <- psychTestR::get_global("range", state)
+      range %in% c("Baritone", "Bass", "Tenor")
+    },
+    logic = MAST_wav(trial_type = "daa", high_or_low = "low")
   )
 }
 
+daa_high <- function() {
+  psychTestR::conditional(
+    test = function(state, ...) {
+      range <- psychTestR::get_global("range", state)
+      range %in% c("Soprano", "Alto")
+    },
+    logic = MAST_wav(trial_type = "daa", high_or_low = "high")
+  )
+}
+
+doo_low <- function() {
+  psychTestR::conditional(
+    test = function(state, ...) {
+      print('doo_low...')
+      range <- psychTestR::get_global("range", state)
+      print(range)
+      range %in% c("Baritone", "Bass", "Tenor")
+    },
+    logic = MAST_wav(trial_type = "doo", high_or_low = "low")
+  )
+}
+
+doo_high <- function() {
+  psychTestR::conditional(
+    test = function(state, ...) {
+      print('doo_high...')
+      range <- psychTestR::get_global("range", state)
+      print(range)
+      range %in% c("Soprano", "Alto")
+    },
+    logic = MAST_wav(trial_type = "doo", high_or_low = "high")
+  )
+}
+
+condition_one <- function() {
+  # # daa then doo
+  psychTestR::conditional(test = function(state, ...) {
+    psychTestR::get_global("snap", state) == 1
+  }, logic = psychTestR::join(
+    psychTestR::one_button_page("In the following trials, you will sing back melodies. Please sing with a \"Daah\" sound."),
+    daa_low(),
+    # OR
+    daa_high(),
+    psychTestR::elt_save_results_to_disk(complete = FALSE),
+
+    musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd2", text = "Please sing Happy Birthday."),
+
+    psychTestR::elt_save_results_to_disk(complete = FALSE),
+
+    psychTestR::one_button_page("In the following trials, you will sing back melodies. Please sing with a \"Dooo\" sound."),
+
+    doo_low(),
+    # OR
+    doo_high()
+
+  ))
+}
+
+condition_two <- function() {
+  # # doo then daa
+  psychTestR::conditional(test = function(state, ...) {
+    psychTestR::get_global("snap", state) == 2
+  }, logic = psychTestR::join(
+    psychTestR::one_button_page("In the following trials, you will sing back melodies. Please sing with a \"Dooo\" sound."),
+    doo_low(),
+    # OR
+    doo_high(),
+    psychTestR::elt_save_results_to_disk(complete = FALSE),
+
+    musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd2", text = "Please sing Happy Birthday."),
+
+    psychTestR::elt_save_results_to_disk(complete = FALSE),
+
+    psychTestR::one_button_page("In the following trials, you will sing back melodies. Please sing with a \"Daah\" sound."),
+
+    daa_low(),
+    # OR
+    daa_high()
+
+  ))
+}
 
 setup_questions <- function() {
   psychTestR::module("setup_questions",
@@ -82,53 +166,53 @@ upei_intro <- function(state, append = NULL) {
 
 
   # function() {
-    t <-
-      # psychTestR::new_timeline(
-        psychTestR::join(
-          psychTestR::one_button_page(shiny::tags$div(
-            shiny::tags$h1(paste("Welcome to the UPEI ", format(Sys.Date(), "%Y"),  " Music Testing" )),
-            shiny::tags$p("Vocalization, Music Interests and Music Knowledge Questionnaire")
-          )),
+  t <-
+    # psychTestR::new_timeline(
+    psychTestR::join(
+      psychTestR::one_button_page(shiny::tags$div(
+        shiny::tags$h1(paste("Welcome to the UPEI ", format(Sys.Date(), "%Y"),  " Music Testing" )),
+        shiny::tags$p("Vocalization, Music Interests and Music Knowledge Questionnaire")
+      )),
 
 
 
-          psychTestR::NAFC_page(label = "using_chrome",
-                                prompt = "Are you using the most recent version of Google Chrome?",
-                                choices = c("Yes", "No"),
-                                save_answer = FALSE),
+      psychTestR::NAFC_page(label = "using_chrome",
+                            prompt = "Are you using the most recent version of Google Chrome?",
+                            choices = c("Yes", "No"),
+                            save_answer = FALSE),
 
-          psychTestR::conditional(test = function(state, answer, ...) {
-            psychTestR::answer(state) == "No"
-          }, logic = psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please use the following link to access the instructions to download the latest version: ",
-                                                                          shiny::tags$a("https://www.google.com/intl/en_uk/chrome/",
-                                                                                        href = "https://www.google.com/intl/en_uk/chrome/", target = "_blank")),
-                                                            shiny::tags$p("After you have downloaded the latest version simply proceed to  ",
-                                                                          shiny::tags$a("https://musicog.ca/upei_2022/", href = "https://musicog.ca/upei_2022/", target = "_blank"), "to start again.")))),
-
-
-          return_questions(append),
-
-          get_upei_id(),
+      psychTestR::conditional(test = function(state, answer, ...) {
+        psychTestR::answer(state) == "No"
+      }, logic = psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please use the following link to access the instructions to download the latest version: ",
+                                                                      shiny::tags$a("https://www.google.com/intl/en_uk/chrome/",
+                                                                                    href = "https://www.google.com/intl/en_uk/chrome/", target = "_blank")),
+                                                        shiny::tags$p("After you have downloaded the latest version simply proceed to  ",
+                                                                      shiny::tags$a("https://musicog.ca/upei_2022/", href = "https://musicog.ca/upei_2022/", target = "_blank"), "to start again.")))),
 
 
-          psychTestR::elt_save_results_to_disk(complete = FALSE)
+      return_questions(append),
+
+      get_upei_id(),
 
 
-        )
-      # )
+      psychTestR::elt_save_results_to_disk(complete = FALSE)
 
 
-    if(is.null(append)) {
-      t
-    } else {
-      psychTestR::make_test(
-        psychTestR::join(
-          t,
-          append,
-          psychTestR::elt_save_results_to_disk(complete = TRUE),
-          psychTestR::final_page("You have finished this section.")
-        ), opt = upei_test_options(state))
-    }
+    )
+  # )
+
+
+  if(is.null(append)) {
+    t
+  } else {
+    psychTestR::make_test(
+      psychTestR::join(
+        t,
+        append,
+        psychTestR::elt_save_results_to_disk(complete = TRUE),
+        psychTestR::final_page("You have finished this section.")
+      ), opt = upei_test_options(state))
+  }
   # }
 
 }
@@ -136,9 +220,9 @@ upei_intro <- function(state, append = NULL) {
 upei_intro_part2 <- function(state, append = NULL) {
 
 
-  function() {
+  # function() {
     t <-
-      psychTestR::new_timeline(
+      # psychTestR::new_timeline(
         psychTestR::join(
           psychTestR::one_button_page(shiny::tags$div(
             shiny::tags$h1(paste("Welcome to the Part 2 of the UPEI ", format(Sys.Date(), "%Y"),  " Music Testing" )),
@@ -168,7 +252,7 @@ upei_intro_part2 <- function(state, append = NULL) {
           psychTestR::elt_save_results_to_disk(complete = FALSE)
 
 
-        )
+        # )
       )
 
 
@@ -184,7 +268,7 @@ upei_intro_part2 <- function(state, append = NULL) {
         ), opt = upei_test_options(state))
     }
 
-  }
+  # }
 
 }
 say_pd <-  function(dinosaur_instructions, body_instructions) {
@@ -642,4 +726,3 @@ return_questions <- function(append = NULL) {
     psychTestR::code_block(function(state, ...) { })
   }
 }
-
