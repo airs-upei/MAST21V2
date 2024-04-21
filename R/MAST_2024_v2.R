@@ -100,7 +100,7 @@ after_setup <- function(page_type = "record_midi_page",
                         opening_and_final_image,
                         musicassessr_state,
                         absolute_url = "https://musicog.ca/",
-                        final_qualtrics_url = 'https://upeiairs.qualtrics.com/jfe/form/SV_5vDAjJhxLqZw7Km?participant=') {
+                        final_qualtrics_url) {
 
   data_collection_method <- match.arg(data_collection_method)
 
