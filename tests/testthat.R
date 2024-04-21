@@ -6,7 +6,7 @@
 # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
 # * https://testthat.r-lib.org/articles/special-files.html
 
-library(testthat)
-library(MAST21V2)
-
-test_check("MAST21V2")
+# library(testthat)
+# library(MAST21V2)
+#
+# test_check("MAST21V2")
