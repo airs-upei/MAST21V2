@@ -409,6 +409,7 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                          shiny::tags$p(shiny::tags$strong(page_title)),
                          shiny::tags$p(page_text))
                      ),
+
                      musicassessr::present_stimuli(
                        stimuli = make_ending_file,
                        stimuli_type = "audio",
@@ -417,11 +418,23 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                        get_answer = musicassessr::get_answer_pyin,
                        page_text = sub_text,
                        page_title = page_title,
-                       hideOnPlay = FALSE,
+                       hideOnPlay = TRUE,
                        auto_next_page = TRUE,
-                       attempts_left = 2,
-                       page_label = "make_up_ending_1",
-                       volume = 0.90),
+                       page_label = 'make_up_ending_1',
+                       volume = 2),
+                     # musicassessr::present_stimuli(
+                     #   stimuli = make_ending_file,
+                     #   stimuli_type = "audio",
+                     #   display_modality = "auditory",
+                     #   page_type = "record_audio_page",
+                     #   get_answer = musicassessr::get_answer_pyin,
+                     #   page_text = sub_text,
+                     #   page_title = page_title,
+                     #   hideOnPlay = FALSE,
+                     #   auto_next_page = TRUE,
+                     #   attempts_left = 1,
+                     #   page_label = "make_up_ending_1",
+                     #   volume = 0.90),
 
 
                      psychTestR::elt_save_results_to_disk(complete = FALSE),
@@ -435,6 +448,20 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                          psychTestR::answer(state) == "Yes"
                        }, logic = psychTestR::module("make_up_ending_2",
 
+                                                     # musicassessr::present_stimuli(
+                                                     #   stimuli = make_ending_file,
+                                                     #   stimuli_type = "audio",
+                                                     #   display_modality = "auditory",
+                                                     #   page_type = "record_audio_page",
+                                                     #   get_answer = musicassessr::get_answer_pyin,
+                                                     #   page_text = sub_text,
+                                                     #   page_title = page_title,
+                                                     #   hideOnPlay = FALSE,
+                                                     #   auto_next_page = TRUE,
+                                                     #   attempts_left = 2,
+                                                     #   page_label = "make_up_ending_2",
+                                                     #   volume = 0.90),
+
                                                      musicassessr::present_stimuli(
                                                        stimuli = make_ending_file,
                                                        stimuli_type = "audio",
@@ -443,11 +470,10 @@ make_up_an_ending <- function (page_title, page_text, sub_text) {
                                                        get_answer = musicassessr::get_answer_pyin,
                                                        page_text = sub_text,
                                                        page_title = page_title,
-                                                       hideOnPlay = FALSE,
+                                                       hideOnPlay = TRUE,
                                                        auto_next_page = TRUE,
-                                                       attempts_left = 2,
-                                                       page_label = "make_up_ending_2",
-                                                       volume = 0.90),
+                                                       page_label = "make_up_ending_1",
+                                                       volume = 2),
 
                                                      psychTestR::elt_save_results_to_disk(complete = FALSE))
 
