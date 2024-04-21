@@ -398,103 +398,109 @@ phonation_duration <- function() {
 
 make_up_an_ending <- function (page_title, page_text, sub_text) {
 
-  make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
-
-  range <- psychTestR::get_global("range", state)
-
-  if(range %in% c("Baritone", "Bass", "Tenor", "Not Sure")) {
-    make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
-
-  }
-
-  else {
-    make_ending_file <- "MAST21-assets/make_up_ending/end_melody_high.wav"
-
-  }
-
-  psychTestR::module("make_up_ending_1",
-
-                     psychTestR::one_button_page(
-
-                       shiny::tags$div(
-                         shiny::tags$p(shiny::tags$strong(page_title)),
-                         shiny::tags$p(page_text))
-                     ),
-
-                     musicassessr::present_stimuli(
-                       stimuli = make_ending_file,
-                       stimuli_type = "audio",
-                       display_modality = "auditory",
-                       page_type = "record_audio_page",
-                       get_answer = musicassessr::get_answer_pyin,
-                       page_text = sub_text,
-                       page_title = page_title,
-                       hideOnPlay = TRUE,
-                       auto_next_page = TRUE,
-                       page_label = 'make_up_ending_1',
-                       volume = 2),
-                     # musicassessr::present_stimuli(
-                     #   stimuli = make_ending_file,
-                     #   stimuli_type = "audio",
-                     #   display_modality = "auditory",
-                     #   page_type = "record_audio_page",
-                     #   get_answer = musicassessr::get_answer_pyin,
-                     #   page_text = sub_text,
-                     #   page_title = page_title,
-                     #   hideOnPlay = FALSE,
-                     #   auto_next_page = TRUE,
-                     #   attempts_left = 1,
-                     #   page_label = "make_up_ending_1",
-                     #   volume = 0.90),
+  #make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
 
 
-                     psychTestR::elt_save_results_to_disk(complete = FALSE),
+  psychTestR::reactive_page(function(state, ... ) {
+    range <- psychTestR::get_global("range", state)
 
-                     psychTestR::NAFC_page(label = "make_up_ending_answer",
-                                           prompt = "Would you like to go again?",
-                                           choices = c("Yes", "No")),
+    if(range %in% c("Baritone", "Bass", "Tenor", "Not Sure")) {
+      make_ending_file <- "MAST21-assets/make_up_ending/end_melody_low.wav"
 
-                     psychTestR::conditional(
-                       test = function(state, ...) {
-                         psychTestR::answer(state) == "Yes"
-                       }, logic = psychTestR::module("make_up_ending_2",
+    }
 
-                                                     # musicassessr::present_stimuli(
-                                                     #   stimuli = make_ending_file,
-                                                     #   stimuli_type = "audio",
-                                                     #   display_modality = "auditory",
-                                                     #   page_type = "record_audio_page",
-                                                     #   get_answer = musicassessr::get_answer_pyin,
-                                                     #   page_text = sub_text,
-                                                     #   page_title = page_title,
-                                                     #   hideOnPlay = FALSE,
-                                                     #   auto_next_page = TRUE,
-                                                     #   attempts_left = 2,
-                                                     #   page_label = "make_up_ending_2",
-                                                     #   volume = 0.90),
+    else {
+      make_ending_file <- "MAST21-assets/make_up_ending/end_melody_high.wav"
 
-                                                     musicassessr::present_stimuli(
-                                                       stimuli = make_ending_file,
-                                                       stimuli_type = "audio",
-                                                       display_modality = "auditory",
-                                                       page_type = "record_audio_page",
-                                                       get_answer = musicassessr::get_answer_pyin,
-                                                       page_text = sub_text,
-                                                       page_title = page_title,
-                                                       hideOnPlay = TRUE,
-                                                       auto_next_page = TRUE,
-                                                       page_label = "make_up_ending_1",
+    }
 
-                                                       volume = 2),
+    psychTestR::module("make_up_ending_1",
 
-                                                     psychTestR::elt_save_results_to_disk(complete = FALSE))
+                       psychTestR::one_button_page(
+
+                         shiny::tags$div(
+                           shiny::tags$p(shiny::tags$strong(page_title)),
+                           shiny::tags$p(page_text))
+                       ),
+
+                       musicassessr::present_stimuli(
+                         stimuli = make_ending_file,
+                         stimuli_type = "audio",
+                         display_modality = "auditory",
+                         page_type = "record_audio_page",
+                         get_answer = musicassessr::get_answer_pyin,
+                         page_text = sub_text,
+                         page_title = page_title,
+                         hideOnPlay = TRUE,
+                         auto_next_page = TRUE,
+                         page_label = 'make_up_ending_1',
+                         volume = 2),
+                       # musicassessr::present_stimuli(
+                       #   stimuli = make_ending_file,
+                       #   stimuli_type = "audio",
+                       #   display_modality = "auditory",
+                       #   page_type = "record_audio_page",
+                       #   get_answer = musicassessr::get_answer_pyin,
+                       #   page_text = sub_text,
+                       #   page_title = page_title,
+                       #   hideOnPlay = FALSE,
+                       #   auto_next_page = TRUE,
+                       #   attempts_left = 1,
+                       #   page_label = "make_up_ending_1",
+                       #   volume = 0.90),
+
+
+                       psychTestR::elt_save_results_to_disk(complete = FALSE),
+
+                       psychTestR::NAFC_page(label = "make_up_ending_answer",
+                                             prompt = "Would you like to go again?",
+                                             choices = c("Yes", "No")),
+
+                       psychTestR::conditional(
+                         test = function(state, ...) {
+                           psychTestR::answer(state) == "Yes"
+                         }, logic = psychTestR::module("make_up_ending_2",
+
+                                                       # musicassessr::present_stimuli(
+                                                       #   stimuli = make_ending_file,
+                                                       #   stimuli_type = "audio",
+                                                       #   display_modality = "auditory",
+                                                       #   page_type = "record_audio_page",
+                                                       #   get_answer = musicassessr::get_answer_pyin,
+                                                       #   page_text = sub_text,
+                                                       #   page_title = page_title,
+                                                       #   hideOnPlay = FALSE,
+                                                       #   auto_next_page = TRUE,
+                                                       #   attempts_left = 2,
+                                                       #   page_label = "make_up_ending_2",
+                                                       #   volume = 0.90),
+
+                                                       musicassessr::present_stimuli(
+                                                         stimuli = make_ending_file,
+                                                         stimuli_type = "audio",
+                                                         display_modality = "auditory",
+                                                         page_type = "record_audio_page",
+                                                         get_answer = musicassessr::get_answer_pyin,
+                                                         page_text = sub_text,
+                                                         page_title = page_title,
+                                                         hideOnPlay = TRUE,
+                                                         auto_next_page = TRUE,
+                                                         page_label = "make_up_ending_2",
+
+                                                         volume = 2),
+
+                                                       psychTestR::elt_save_results_to_disk(complete = FALSE))
 
 
 
-                     )
+                       )
 
 
-  )
+    )
+
+  })
+
+
 }
 
 
