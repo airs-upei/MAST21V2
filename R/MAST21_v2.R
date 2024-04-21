@@ -234,9 +234,9 @@ mast_21 <-  function(mast_inst) {
                        psychTestR::set_global("snap", snap, state)
                      }),
 
-                     # musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd1", text = "Please sing Happy Birthday."),
-                     #
-                     # psychTestR::elt_save_results_to_disk(complete = FALSE),
+                     musicassessr::sing_happy_birthday_page(feedback = FALSE, label = "sing_hbd1", text = "Please sing Happy Birthday."),
+
+                     psychTestR::elt_save_results_to_disk(complete = FALSE),
 
                      condition_one(),
                      # OR
