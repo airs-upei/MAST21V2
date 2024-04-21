@@ -130,15 +130,6 @@ after_setup <- function(page_type = "record_midi_page",
 
             musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = FALSE),
             #
-
-            mast_21(mast_inst = "You will now have another test of short singing examples.
-                    There are 2 sets of 21 questions. The first 20 are very short.
-                    Like the previous test, you will hear a melody and be asked to imitate.
-                    Unlike the previous test, in which you sang along with the example, now you will listen and then sing: you will hear the example and then sing the imitation after it.
-                    You will be asked to sing each of the two sets of 21 examples on a different syllable:  one set on /da/ (“Daah”) and the other on /du/ (“Dooo”).
-                    The instructions before each set of 21 examples will let you know which syllable to use.
-                    You will also be asked to sing “Happy birthday” on four occasions."),
-
             say_pd(dinosaur_instructions = "Please press the “record” button and read the sentence below out loud: ",
                    body_instructions = 'Although the next short test involves singing,
                                       we would like to start off by asking you to read out loud four short sentences all beginning with the phrase
