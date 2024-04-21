@@ -129,7 +129,7 @@ after_setup <- function(page_type = "record_midi_page",
             psychTestR::reactive_page(function(state, ... ) {
               p_id <- psychTestR::get_global('p_id', state)
               url <- paste0(final_qualtrics_url, p_id)
-              if(length(final_qualtrics_url) > 0) {
+              if(grepl("http", final_qualtrics_url)) {
                 psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
                                                                      shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
               }
