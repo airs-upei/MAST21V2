@@ -161,6 +161,8 @@ after_setup_v2 <- function(page_type = "record_midi_page",
       ), # end timeline (it's not needed from here onwards, and the SAA is embedded in UPEI_extra_questions, so to avoid nesting)
 
 
+      musicassessr::get_voice_range_page(with_examples = FALSE),
+
 
       make_up_an_ending("Make up an Ending", "Please make up an ending to the following short melody on the syllable “doo”.
                          Listen to the short melody. It will play twice.
