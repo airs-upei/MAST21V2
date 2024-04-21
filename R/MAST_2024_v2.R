@@ -96,6 +96,7 @@ after_setup <- function(page_type = "record_midi_page",
                         data_collection_method = c("midi", "audio", "key_presses"),
                         get_p_id = TRUE,
                         language,
+                        app_name,
                         opening_and_final_image,
                         musicassessr_state,
                         absolute_url = "https://musicog.ca/",
@@ -119,11 +120,23 @@ after_setup <- function(page_type = "record_midi_page",
 
 
 
-            musicassessr::musicassessr_init(),
+            musicassessr::musicassessr_init(app_name = app_name),
 
             welcome_pg <- psychTestR::one_button_page(shiny::tags$div(shiny::tags$h2(paste("Welcome to the UPEI ", 	format(Sys.Date(), "%Y"), " Singing Test")),
                                                                       shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
+            psychTestR::reactive_page(function(state, ... ) {
+              p_id <- psychTestR::get_global('p_id', state)
+              url <- paste0(final_qualtrics_url, p_id)
+              if(length(final_qualtrics_url) > 0) {
+                psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
+                                                                     shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
+              }
 
+              else {
+                psychTestR::final_page(shiny::tags$div(shiny::tags$p("You have completed the test.")))
+              }
+
+            })
 
 
             upei_intro(musicassessr_state),
@@ -220,6 +233,7 @@ deploy_MAST21V2_2024 <- function(
     absolute_url = absolute_url,
     data_collection_method = "audio",
     setup_pages = setup_pages,
+    app_name = app_name,
     musicassessr_state = musicassessr_state,
     final_qualtrics_url = final_qualtrics_url,
     opening_and_final_image = opening_and_final_image,
