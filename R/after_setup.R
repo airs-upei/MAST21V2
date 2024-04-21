@@ -137,6 +137,10 @@ after_setup_v2 <- function(page_type = "record_midi_page",
                                                                     shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
 
 
+          make_up_an_ending("Make up an Ending", "Please make up an ending to the following short melody on the syllable “doo”.
+                         Listen to the short melody. It will play twice.
+                         Then sing the melody and make up an ending to it. It can be as long or as short as you like.",
+                            "Please make up an ending to the following short melody on the syllable “doo”."),
 
           upei_intro_part2(musicassessr_state),
 
