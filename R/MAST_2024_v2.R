@@ -128,7 +128,7 @@ after_setup <- function(page_type = "record_midi_page",
 
             upei_intro(musicassessr_state),
 
-            musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = FALSE),
+            musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
             #
             say_pd(dinosaur_instructions = "Please press the “record” button and read the sentence below out loud: ",
                    body_instructions = 'Although the next short test involves singing,
