@@ -136,7 +136,7 @@ after_setup <- function(page_type = "record_midi_page",
                 psychTestR::final_page(shiny::tags$div(shiny::tags$p("You have completed the test.")))
               }
 
-            })
+            }),
 
 
             upei_intro(musicassessr_state),
