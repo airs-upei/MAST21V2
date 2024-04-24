@@ -133,19 +133,15 @@ after_setup_GMS <- function(page_type = "record_midi_page",
 
 
 
-
         upei_intro(musicassessr_state),
 
         musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
-        #
 
         psyquest::GMS(),
 
         dict  = musicassessr::dict(NULL),
         default_lang = language
       )
-
-
 
     )
     ,
