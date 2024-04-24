@@ -125,27 +125,21 @@ after_setup_GMS <- function(page_type = "record_midi_page",
   psychTestR::make_test(
     psychTestR::join(
       psychTestR::new_timeline(
-        psychTestR::join(
 
+        musicassessr::musicassessr_init(),
 
-
-          musicassessr::musicassessr_init(),
-
-          welcome_pg <- psychTestR::one_button_page(shiny::tags$div(shiny::tags$h2(paste("Welcome to the UPEI ", 	format(Sys.Date(), "%Y"), " GMS Test")),
-                                                                    shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
+        welcome_pg <- psychTestR::one_button_page(shiny::tags$div(shiny::tags$h2(paste("Welcome to the UPEI ", 	format(Sys.Date(), "%Y"), " GMS Test")),
+                                                                  shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
 
 
 
 
-          upei_intro(musicassessr_state),
+        upei_intro(musicassessr_state),
 
-          musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
-          #
+        musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
+        #
 
-          psyquest::GMS()
-
-
-        ),
+        psyquest::GMS(),
 
         dict  = musicassessr::dict(NULL),
         default_lang = language
