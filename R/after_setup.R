@@ -100,6 +100,66 @@ after_setup <- function(page_type = "record_midi_page",
 }
 
 
+after_setup_GMS <- function(page_type = "record_midi_page",
+                        setup_pages = TRUE,
+                        data_collection_method = c("midi", "audio", "key_presses"),
+                        get_p_id = TRUE,
+                        language,
+                        app_name,
+                        opening_and_final_image,
+                        musicassessr_state,
+                        absolute_url = "https://musicog.ca/",
+                        final_qualtrics_url = "") {
+
+  data_collection_method <- match.arg(data_collection_method)
+
+
+  stopifnot(
+    page_type %in% c("record_midi_page", "record_audio_page", "record_key_presses_page"),
+    is.scalar.logical(setup_pages),
+    is.scalar.character(data_collection_method),
+    is.scalar.logical(get_p_id)
+  )
+
+  # function() {
+  psychTestR::make_test(
+    psychTestR::join(
+      psychTestR::new_timeline(
+        psychTestR::join(
+
+
+
+          musicassessr::musicassessr_init(),
+
+          welcome_pg <- psychTestR::one_button_page(shiny::tags$div(shiny::tags$h2(paste("Welcome to the UPEI ", 	format(Sys.Date(), "%Y"), " GMS Test")),
+                                                                    shiny::tags$img(src = opening_and_final_image, height = 200, width = 200))),
+
+
+
+
+          upei_intro(musicassessr_state),
+
+          musicassessr::setup_pages(input = "microphone", absolute_url = absolute_url, SNR_test = TRUE),
+          #
+
+          psyquest::GMS()
+
+
+        ),
+
+        dict  = musicassessr::dict(NULL),
+        default_lang = language
+      )
+
+
+
+    )
+    ,
+    opt = upei_test_options(musicassessr_state)
+  )
+  # }
+}
+
 
 
 after_setup_v2 <- function(page_type = "record_midi_page",
