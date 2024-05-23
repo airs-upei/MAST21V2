@@ -80,7 +80,7 @@ after_setup <- function(page_type = "record_midi_page",
         p_id <- psychTestR::get_global('p_id', state)
         url <- paste0(final_qualtrics_url, p_id)
         if(grepl("http", final_qualtrics_url)) {
-          psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the final test of this session: ",
+          psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the next session of this study: ",
                                                                shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
         }
 
@@ -221,10 +221,26 @@ after_setup_v2 <- function(page_type = "record_midi_page",
 
       psychTestR::reactive_page(function(state, ... ) {
         p_id <- psychTestR::get_global('p_id', state)
-        psychTestR::final_page(shiny::tags$div(
-          shiny::tags$p('Thank You!'),
-          shiny::tags$p("You have completed the test.")))
+        url <- paste0(final_qualtrics_url, p_id)
+        if(grepl("http", final_qualtrics_url)) {
+          psychTestR::final_page(shiny::tags$div(shiny::tags$p("Please click on the following link to go to the next session of this study: ",
+                                                               shiny::tags$a(" click here", href = url, target = "_blank"), ".")))
+        }
+
+        else {
+          psychTestR::final_page(shiny::tags$div(
+            shiny::tags$p('Thank You!'),
+            shiny::tags$p("You have completed the test.")))
+        }
+
       })
+
+      # psychTestR::reactive_page(function(state, ... ) {
+      #   p_id <- psychTestR::get_global('p_id', state)
+      #   psychTestR::final_page(shiny::tags$div(
+      #     shiny::tags$p('Thank You!'),
+      #     shiny::tags$p("You have completed the test.")))
+      # })
 
     ),
     opt = upei_test_options(musicassessr_state)
