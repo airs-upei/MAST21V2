@@ -151,7 +151,9 @@ get_upei_id <- function() {
 
     psychTestR::reactive_page(function(state, ...) {
       p_id <- psychTestR::answer(state)
+      paste("here")
       print(shiny::getUrlHash())
+
       psychTestR::set_global("p_id", p_id, state)
       psychTestR::one_button_page(shiny::tags$div(
         shiny::tags$script(paste0('const p_id = \"', p_id, '\";')),
